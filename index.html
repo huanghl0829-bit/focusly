@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0f19" />
+  <title>Focusly — Study workspace</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <section id="auth-gate" class="access-view">
+    <div class="access-illustration" aria-hidden="true"><svg viewBox="0 0 620 420" role="presentation"><path class="illustration-cloud" d="M90 112c18-31 65-30 78 6 21-13 50 3 49 28H72c-5-14 2-28 18-34Z"/><path class="illustration-cloud" d="M455 78c12-22 44-21 54 4 16-9 36 3 35 20h-99c-4-10 0-19 10-24Z"/><path class="illustration-sun" d="M489 164c0-25 20-45 45-45s45 20 45 45-20 45-45 45-45-20-45-45Z"/><path class="illustration-desk" d="M107 322h424"/><path class="illustration-lamp" d="M154 318v-84h48l22 28h-70m24-84v56"/><path class="illustration-book" d="M247 291c32-13 64-13 96 0v-61c-32-13-64-13-96 0v61Zm96 0c32-13 64-13 96 0v-61c-32-13-64-13-96 0v61Z"/><path class="illustration-plant" d="M474 319v-48m0 18c-27-8-32-29-27-43 21 2 33 17 27 43Zm0-2c25-10 34-29 28-43-19 3-30 16-28 43Z"/><circle class="illustration-star" cx="132" cy="138" r="5"/><circle class="illustration-star" cx="426" cy="150" r="4"/></svg></div>
+    <div class="access-card card">
+      <div class="brand-row access-brand"><div class="brand-mark">F</div><span class="brand-name">Focusly</span></div>
+      <p class="eyebrow">Private study workspace</p><h1 id="auth-title">Create your local account</h1>
+      <p class="subheading">Your account stays in this browser. Study data is kept in a separate local workspace for each account.</p>
+      <form id="auth-form" class="access-form">
+        <label>Email<input id="auth-email" type="email" autocomplete="username" required placeholder="you@example.com"></label>
+        <label>Password<input id="auth-password" type="password" autocomplete="current-password" minlength="8" required placeholder="At least 8 characters"></label>
+        <p id="auth-error" class="form-error" aria-live="polite"></p>
+        <button id="auth-submit" class="button primary" type="submit">Create local account</button>
+      </form>
+      <button id="auth-mode" class="text-button access-switch" type="button">Already have a local account? Sign in</button>
+    </div>
+  </section>
+  <section id="onboarding" class="access-view hidden">
+    <div class="access-card card">
+      <p class="eyebrow">Make Focusly yours</p><h1>Set your defaults</h1>
+      <p class="subheading">Your new workspace starts empty. You can change these any time in Settings.</p>
+      <form id="onboarding-form" class="access-form">
+        <label>Your name<input id="onboarding-name" required maxlength="40"></label>
+        <label>Weekly goal (minutes)<input id="onboarding-weekly-goal" type="number" min="30" max="10080" required></label>
+        <label>Daily goal (minutes)<input id="onboarding-daily-goal" type="number" min="5" max="1440" required></label>
+        <p id="onboarding-error" class="form-error" aria-live="polite"></p>
+        <div class="access-actions"><button class="button primary" type="submit">Continue</button><button id="use-defaults" class="outlined-button" type="button">Use defaults</button></div>
+      </form>
+    </div>
+  </section>
+
+  <div id="app-shell" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="brand-row"><div class="brand-mark">F</div><span class="brand-name">Focusly</span></div>
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <p class="nav-label">Workspace</p>
+        <button class="nav-item active" data-page="home" aria-label="Home" title="Home"><span class="nav-icon">⌂</span> Home</button>
+        <button class="nav-item" data-page="plan" aria-label="Study plan" title="Study plan"><span class="nav-icon">▣</span> Study plan</button>
+        <button class="nav-item" data-page="focus" aria-label="Focus timer" title="Focus timer"><span class="nav-icon">◷</span> Focus</button>
+        <button class="nav-item" data-page="flashcards" aria-label="Flashcards" title="Flashcards"><span class="nav-icon">◇</span> Flashcards</button>
+        <button class="nav-item" data-page="progress" aria-label="Progress" title="Progress"><span class="nav-icon">▥</span> Progress</button>
+        <button class="nav-item" data-page="notes" aria-label="Notes" title="Notes"><span class="nav-icon">☷</span> Notes</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="nav-item" data-page="materials" aria-label="Add material" title="Add material"><span class="nav-icon">＋</span> Add material</button>
+        <button class="nav-item" data-page="settings" aria-label="Settings" title="Settings"><span class="nav-icon">⚙</span> Settings</button>
+        <button class="profile-chip" type="button" data-action="open-profile" aria-label="Open account profile"><div class="avatar" data-profile-initial>M</div><div><strong data-display-name>Study space</strong><small data-profile-email>Local workspace</small></div><span class="more">•••</span></button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div class="breadcrumb"><span>Workspace</span><b>/</b><strong id="breadcrumb-title">Home</strong></div><div class="top-actions"><span class="status-pill"><span class="status-dot"></span> Saved in this browser</span><button class="icon-button" data-action="show-notifications" aria-label="Notifications">♧</button><button class="avatar small" data-page="settings" aria-label="Account settings">M</button></div></header>
+
+      <section class="page" id="page-home">
+        <div class="page-heading"><div><p class="eyebrow" data-today-label></p><h1>Good morning, <span data-display-name>there</span></h1><p class="subheading">A small step today makes exam day easier.</p></div><button class="button primary" data-page="focus">Start your focus <span>↗</span></button></div>
+        <div id="home-dashboard"></div>
+      </section>
+
+      <section class="page hidden" id="page-plan">
+        <div class="page-heading"><div><p class="eyebrow">Build a rhythm that works</p><h1>Study plan</h1><p class="subheading">Your week at a glance.</p></div><button class="button primary" id="add-plan">＋ Add study item</button></div>
+        <div id="plan-dashboard"></div>
+      </section>
+
+      <section class="page hidden" id="page-focus">
+        <div class="page-heading"><div><p class="eyebrow">One thing at a time</p><h1>Focus timer</h1><p class="subheading">Make space for deep work.</p></div><button class="outlined-button" data-action="show-sessions">Session history <span>→</span></button></div>
+        <div id="focus-dashboard"></div>
+      </section>
+
+      <section class="page hidden" id="page-flashcards">
+        <div class="page-heading"><div><p class="eyebrow">Remember more, stress less</p><h1>Flashcards</h1><p class="subheading">Create a deck or add material to generate one.</p></div><div class="button-row"><button class="outlined-button" id="import-quizlet">Import Quizlet</button><button class="outlined-button" id="import-cards">Import cards</button><button class="button primary" id="new-deck">＋ New deck</button></div><input type="file" accept=".txt,.tsv,.csv,.tab" id="quizlet-file-input" hidden></div>
+        <div id="flashcards-dashboard"></div>
+      </section>
+
+      <section class="page hidden" id="page-progress">
+        <div class="page-heading"><div><p class="eyebrow">A little better each week</p><h1>Your progress</h1><p class="subheading">See what’s working and keep going.</p></div><button class="outlined-button" data-action="share-report">Share report <span>↗</span></button></div>
+        <div id="progress-dashboard"></div>
+      </section>
+
+      <section class="page hidden" id="page-notes"><div class="page-heading"><div><p class="eyebrow">Keep what you learn</p><h1>Notes</h1><p class="subheading">Your saved study notes, ready to revisit.</p></div><div class="button-row"><button class="outlined-button" data-page="materials">＋ Add material</button><button class="outlined-button" data-action="import-ai-notes">Import AI notes</button><input type="file" accept=".html,.htm" id="note-file-input" hidden multiple></div></div><div id="notes-page-content" class="card content-panel"></div></section>
+
+      <section class="page hidden" id="page-materials">
+        <div class="page-heading"><div><p class="eyebrow">Build your study library</p><h1>Add material</h1><p class="subheading">Bring your syllabus and resources into one place.</p></div></div>
+        <article id="drop-zone" class="card upload-card" role="button" tabindex="0" aria-label="Drop or choose study material"><div class="upload-icon">↑</div><h2>Drop a file here</h2><p>or choose a PDF, text file, Markdown document, or an AI-generated HTML note from your Mac.</p><label class="button primary upload-button">Choose a file<input type="file" accept=".pdf,.txt,.md,.html,.htm" id="file-input"></label><p class="upload-note">Your materials stay in this browser.</p></article>
+        <article class="card material-list"><div class="section-heading"><div><h3>Recent materials</h3><p id="material-count">No materials added yet</p></div></div><div id="materials-empty" class="empty-inline">Your imported files will appear here.</div><div id="material-items"></div></article>
+        <div id="notes-panel" class="card content-panel"></div>
+      </section>
+
+      <section class="page hidden" id="page-settings"><div class="page-heading"><div><p class="eyebrow">Make Focusly yours</p><h1>Settings</h1><p class="subheading">Simple controls for your local workspace.</p></div></div><article class="card settings-card"><div class="setting-row"><div><strong>Local workspace</strong><p>Materials and study data stay in this browser and are isolated per account.</p></div><span class="soft-badge">On</span></div><div class="setting-row"><div><strong>AI generation</strong><p>Live AI connection will be available in a future version.</p></div><span class="soft-badge">Coming soon</span></div><div class="setting-row"><div><strong>Appearance</strong><p>Choose light, dark, or match your device.</p></div><select id="theme-select" class="theme-select"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></div><div class="setting-row"><div><strong>Sound effects</strong><p>Play a soft tone when a flashcard answer is revealed.</p></div><label class="switch-control"><input id="sound-effects-select" type="checkbox"><span>On</span></label></div><div class="setting-row"><div><strong>Desktop notifications</strong><p>Notify when a focus session finishes.</p></div><label class="switch-control"><input id="notifications-select" type="checkbox"><span>On</span></label></div><div class="setting-row"><div><strong>Local account</strong><p data-account-email>Offline account</p></div><button class="outlined-button" data-action="sign-out">Sign out</button></div><div class="setting-row"><div><strong>Help tutorial</strong><p>Review the main Focusly features.</p></div><button class="outlined-button" data-action="restart-tutorial">Show tutorial</button></div><div class="setting-row"><div><strong>Reset local data</strong><p>Delete all local Focusly accounts and content.</p></div><button class="outlined-button danger-button" data-action="reset-local-data">Reset</button></div></article></section>
+    </main>
+  </div>
+
+  <dialog id="plan-dialog" class="app-dialog"><form method="dialog" id="plan-form"><div class="dialog-heading"><div><p class="eyebrow">Build your day</p><h2>Add study item</h2></div><button type="button" class="dialog-close" data-action="close-plan">×</button></div><div class="form-grid"><label>Date<input id="plan-date" type="date" required></label><label>Time<input id="plan-time" type="time" value="09:00" required></label><label>Subject<input id="plan-subject" required placeholder="e.g. Biology"></label><label>Duration (minutes)<input id="plan-duration" type="number" min="5" max="1440" value="25" required></label><label class="full-width">Task title<input id="plan-title" required placeholder="e.g. Review cell structure"></label></div><p id="plan-error" class="form-error"></p><div class="dialog-actions"><button type="button" class="outlined-button" data-action="close-plan">Cancel</button><button class="button primary" type="submit">Add to plan</button></div></form></dialog>
+
+  <dialog id="deck-dialog" class="app-dialog"><form method="dialog" id="deck-form"><div class="dialog-heading"><div><p class="eyebrow">Make your own study set</p><h2>New flashcard deck</h2></div><button type="button" class="dialog-close" data-action="close-deck">×</button></div><div class="form-grid"><label>Deck title<input id="deck-title" required placeholder="e.g. Biology basics"></label><label>Subject<input id="deck-subject" required placeholder="e.g. Biology"></label></div><div class="card-editor-heading"><strong>Cards</strong><button type="button" class="text-button" id="add-deck-card">＋ Add card</button></div><div id="deck-card-editor"></div><p id="deck-error" class="form-error"></p><div class="dialog-actions"><button type="button" class="outlined-button" data-action="close-deck">Cancel</button><button class="button primary" type="submit">Create deck</button></div></form></dialog>
+
+  <dialog id="import-dialog" class="app-dialog"><form method="dialog" id="import-form"><div class="dialog-heading"><div><p class="eyebrow">Bring cards in quickly</p><h2>Import flashcards</h2></div><button type="button" class="dialog-close" data-action="close-import">×</button></div><label>Deck title<input id="import-title" required placeholder="e.g. Biology review"></label><label>Subject<input id="import-subject" required placeholder="e.g. Biology"></label><label>Paste CSV, tab-separated text, or question :: answer lines<textarea id="import-content" rows="10" required placeholder="front,back\nWhat is ATP?,The cell's energy currency"></textarea></label><p id="import-error" class="form-error"></p><div class="dialog-actions"><button type="button" class="outlined-button" data-action="close-import">Cancel</button><button class="button primary" type="submit">Import cards</button></div></form></dialog>
+
+  <dialog id="note-import-dialog" class="app-dialog"><form method="dialog" id="note-import-form"><div class="dialog-heading"><div><p class="eyebrow">Bring AI notes in</p><h2>Import AI notes</h2></div><button type="button" class="dialog-close" data-action="close-note-import">×</button></div><div class="form-grid"><label class="full-width">Subject<input id="note-import-subject" list="note-subject-options" placeholder="e.g. Biology"></label></div><datalist id="note-subject-options"></datalist><p id="note-import-count"></p><p id="note-import-error" class="form-error"></p><div class="dialog-actions"><button type="button" class="outlined-button" data-action="close-note-import">Cancel</button><button class="button primary" type="submit">Import</button></div></form></dialog>
+
+  <dialog id="material-import-dialog" class="app-dialog"><form method="dialog" id="material-import-form"><div class="dialog-heading"><div><p class="eyebrow">Bring study material in</p><h2>Add material</h2></div><button type="button" class="dialog-close" data-action="close-material-import">×</button></div><div class="form-grid"><label class="full-width">Subject<input id="material-import-subject" list="material-subject-options" placeholder="e.g. Biology"></label></div><datalist id="material-subject-options"></datalist><p id="material-import-count"></p><p id="material-import-error" class="form-error"></p><div class="dialog-actions"><button type="button" class="outlined-button" data-action="close-material-import">Cancel</button><button class="button primary" type="submit">Import</button></div></form></dialog>
+
+  <dialog id="card-selection-dialog" class="app-dialog"><form method="dialog" id="card-selection-form"><div class="dialog-heading"><div><p class="eyebrow">Turn a selection into recall</p><h2>Make a flashcard</h2></div><button type="button" class="dialog-close" data-action="close-card-selection">×</button></div><div class="form-grid"><label class="full-width">Deck title<input id="card-selection-deck" required placeholder="e.g. Biology review"></label></div><p id="card-selection-error" class="form-error"></p><div class="dialog-actions"><button type="button" class="outlined-button" data-action="close-card-selection">Cancel</button><button class="button primary" type="submit">Create card</button></div></form></dialog>
+
+  <dialog id="reset-confirm-dialog" class="app-dialog"><div class="dialog-heading"><div><p class="eyebrow">This cannot be undone</p><h2>Reset local data?</h2></div><button type="button" class="dialog-close" data-action="close-reset">×</button></div><p class="subheading">This deletes all Focusly accounts and study data stored in this browser. This action cannot be undone.</p><div class="dialog-actions"><button type="button" class="outlined-button" data-action="close-reset">Cancel</button><button type="button" class="outlined-button danger-button" data-action="confirm-reset">Delete everything</button></div></dialog>
+
+<dialog id="profile-dialog" class="app-dialog"><form method="dialog" id="profile-form"><div class="dialog-heading"><div><p class="eyebrow">Your local account</p><h2>Profile</h2></div><button type="button" class="dialog-close" data-action="close-profile">×</button></div><div class="form-grid"><label>Display name<input id="profile-name" maxlength="40" required></label><label>Email<input id="profile-email" type="email" required></label></div><p id="profile-error" class="form-error"></p><div class="dialog-actions"><button type="button" class="outlined-button" data-action="close-profile">Cancel</button><button type="button" class="outlined-button" data-page="settings">Settings</button><button class="button primary" type="submit">Save profile</button></div></form></dialog>
+  <dialog id="history-dialog" class="app-dialog"><div class="dialog-heading"><div><p class="eyebrow">Your study rhythm</p><h2>Session history</h2></div><button type="button" class="dialog-close" data-action="close-history">×</button></div><div id="history-content"></div></dialog>
+  <dialog id="timer-settings-dialog" class="app-dialog"><form method="dialog" id="timer-settings-form"><div class="dialog-heading"><div><p class="eyebrow">Make focus fit your day</p><h2>Timer settings</h2></div><button type="button" class="dialog-close" data-action="close-timer-settings">×</button></div><div class="form-grid"><label>Focus minutes<input id="timer-focus-minutes" type="number" min="1" max="180" required></label><label>Short break minutes<input id="timer-short-minutes" type="number" min="1" max="60" required></label><label>Long break minutes<input id="timer-long-minutes" type="number" min="1" max="60" required></label><label>Cycles before long break<input id="timer-cycles" type="number" min="1" max="12" required></label></div><label class="full-width inline-check"><input id="auto-start-select" type="checkbox"> Auto-start the next session</label><p id="timer-settings-error" class="form-error"></p><div class="dialog-actions"><button type="button" class="outlined-button" data-action="close-timer-settings">Cancel</button><button class="button primary" type="submit">Save settings</button></div></form></dialog>
+
+  <div id="tutorial" class="tutorial hidden" role="dialog" aria-modal="true" aria-labelledby="tutorial-title"><div class="tutorial-card card"><span id="tutorial-step" class="soft-badge">Step 1 of 6</span><h2 id="tutorial-title">Welcome to Focusly</h2><p id="tutorial-copy"></p><div class="tutorial-actions"><button id="tutorial-skip" class="outlined-button" type="button">Skip tutorial</button><button id="tutorial-next" class="button primary" type="button">Next</button></div></div></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

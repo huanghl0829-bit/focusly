@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Xcode user state & build artifacts
+Focusly/Focusly.xcodeproj/xcuserdata/
+xcuserdata/
+*.xcuserstate
+DerivedData/
+build/
+
+# Node (none today, but harmless if added later)
+node_modules/
+npm-debug.log*
