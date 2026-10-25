@@ -438,5 +438,5 @@ function bindEvents() {
 let lastActivityAt = Date.now();
 ['mousemove','keydown','pointerdown','touchstart'].forEach(type => window.addEventListener(type, () => { lastActivityAt = Date.now(); }));
 setInterval(() => { if (currentState && timerState.running && Date.now() - lastActivityAt >= (currentState.preferences.idleMinutes || 5) * 60000) { handleLifecycle('systemIdle'); lastActivityAt = Date.now(); } }, 15000);
-function boot() { const loaded = loadState(); currentState = loaded.state ? migrateState(loaded.state, loaded.account) : null; bindEvents(); setAuthMode(Boolean(loaded.account)); if (currentState) { applyTheme(currentState.preferences.theme); if (currentState.onboarding?.completed) enterApp(); else beginOnboarding(); } else showAccess('auth'); }
+function boot() { const loaded = loadState(); currentState = loaded.state ? migrateState(loaded.state, loaded.account) : null; bindEvents(); setAuthMode(Boolean(loaded.account)); if (currentState) { applyTheme(currentState.preferences.theme); if (currentState.onboarding?.completed) enterApp(); else beginOnboarding(); } else showAccess('auth'); if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {}); }
 boot();
