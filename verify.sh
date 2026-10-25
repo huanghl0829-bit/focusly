@@ -19,8 +19,8 @@ close_braces=$(grep -o '}' styles.css | wc -l | tr -d ' ')
 echo "✓ styles.css braces balanced ($open_braces pairs)"
 
 # --- 2. index.html: loads the app files --------------------------------------
-grep -q 'src="app.js"' index.html || fail 'index.html does not load app.js'
-grep -q 'href="styles.css"' index.html || fail 'index.html does not load styles.css'
+grep -q 'src="app.js' index.html || fail 'index.html does not load app.js'
+grep -q 'href="styles.css' index.html || fail 'index.html does not load styles.css'
 echo "✓ index.html references app.js and styles.css"
 
 # --- 3 + 4. JavaScriptCore: boot the app headless, then run logic tests ------
@@ -108,6 +108,8 @@ check('sanitizeAiHtml keeps useful markup', sanitizeAiHtml('<h3>T</h3><ul><li>x<
 check('parseAiCards reads fenced JSON', parseAiCards('```json\n[{"question":"Q","answer":"A"}]\n```').length, 1);
 check('parseAiCards reads plain array', parseAiCards('[{"question":"Q2","answer":"A2"}]')[0].answer, 'A2');
 check('parseAiCards rejects junk', parseAiCards('no json here').length, 0);
+check('sanitizeAiHtml removes script content', sanitizeAiHtml('<p>a</p><script>alert(1)</script>'), '<p>a</p>');
+check('sanitizeAiHtml removes style content', sanitizeAiHtml('<style>.x{}</style><p>b</p>'), '<p>b</p>');
 if (failures.length) throw new Error('FAILED — ' + failures.join(' | '));
 return 'VERIFY OK';
 EOF

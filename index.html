@@ -4,14 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0b0f19" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f87171'/%3E%3Cstop offset='1' stop-color='%23818cf8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6.5' fill='url(%23g)'/%3E%3Ccircle cx='12' cy='12' r='7' fill='none' stroke='%230b0f19' stroke-width='2.6' stroke-linecap='round' stroke-dasharray='33 44' transform='rotate(-90 12 12)'/%3E%3Ccircle cx='12' cy='12' r='2.1' fill='%230b0f19'/%3E%3C/svg%3E" />
   <title>Focusly — Study workspace</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2" />
 </head>
 <body>
   <section id="auth-gate" class="access-view">
     <div class="access-illustration" aria-hidden="true"><svg viewBox="0 0 620 420" role="presentation"><path class="illustration-cloud" d="M90 112c18-31 65-30 78 6 21-13 50 3 49 28H72c-5-14 2-28 18-34Z"/><path class="illustration-cloud" d="M455 78c12-22 44-21 54 4 16-9 36 3 35 20h-99c-4-10 0-19 10-24Z"/><path class="illustration-sun" d="M489 164c0-25 20-45 45-45s45 20 45 45-20 45-45 45-45-20-45-45Z"/><path class="illustration-desk" d="M107 322h424"/><path class="illustration-lamp" d="M154 318v-84h48l22 28h-70m24-84v56"/><path class="illustration-book" d="M247 291c32-13 64-13 96 0v-61c-32-13-64-13-96 0v61Zm96 0c32-13 64-13 96 0v-61c-32-13-64-13-96 0v61Z"/><path class="illustration-plant" d="M474 319v-48m0 18c-27-8-32-29-27-43 21 2 33 17 27 43Zm0-2c25-10 34-29 28-43-19 3-30 16-28 43Z"/><circle class="illustration-star" cx="132" cy="138" r="5"/><circle class="illustration-star" cx="426" cy="150" r="4"/></svg></div>
     <div class="access-card card">
-      <div class="brand-row access-brand"><div class="brand-mark">F</div><span class="brand-name">Focusly</span></div>
+      <div class="brand-row access-brand"><div class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="brand-g-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--accent-focus,#f87171)"/><stop offset="1" style="stop-color:var(--accent-long,#818cf8)"/></linearGradient></defs><rect width="24" height="24" rx="6.5" fill="url(#brand-g-a)"/><circle cx="12" cy="12" r="7" fill="none" stroke="#0b0f19" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/><circle cx="12" cy="12" r="2.1" fill="#0b0f19"/></svg></div><span class="brand-name">Focusly</span></div>
       <p class="eyebrow">Private study workspace</p><h1 id="auth-title">Create your local account</h1>
       <p class="subheading">Your account stays in this browser. Study data is kept in a separate local workspace for each account.</p>
       <form id="auth-form" class="access-form">
@@ -39,7 +40,7 @@
 
   <div id="app-shell" class="app-shell hidden">
     <aside class="sidebar">
-      <div class="brand-row"><div class="brand-mark">F</div><span class="brand-name">Focusly</span></div>
+      <div class="brand-row"><div class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="brand-g-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--accent-focus,#f87171)"/><stop offset="1" style="stop-color:var(--accent-long,#818cf8)"/></linearGradient></defs><rect width="24" height="24" rx="6.5" fill="url(#brand-g-b)"/><circle cx="12" cy="12" r="7" fill="none" stroke="#0b0f19" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="33 44" transform="rotate(-90 12 12)"/><circle cx="12" cy="12" r="2.1" fill="#0b0f19"/></svg></div><span class="brand-name">Focusly</span></div>
       <nav class="primary-nav" aria-label="Primary navigation">
         <p class="nav-label">Workspace</p>
         <button class="nav-item active" data-page="home" aria-label="Home" title="Home"><span class="nav-icon">⌂</span> Home</button>
@@ -57,7 +58,7 @@
     </aside>
 
     <main class="main-content">
-      <header class="topbar"><div class="breadcrumb"><span>Workspace</span><b>/</b><strong id="breadcrumb-title">Home</strong></div><div class="top-actions"><span class="status-pill"><span class="status-dot"></span> Saved in this browser</span><button class="icon-button" data-action="show-notifications" aria-label="Notifications">♧</button><button class="avatar small" data-page="settings" aria-label="Account settings">M</button></div></header>
+      <header class="topbar"><div class="breadcrumb"><span>Workspace</span><b>/</b><strong id="breadcrumb-title">Home</strong></div><div class="top-actions"><button class="status-pill pulse-pill" id="topbar-pulse" type="button" title="Your study pulse"><span class="status-dot"></span><span id="topbar-pulse-text">Saved in this browser</span></button><button class="icon-button" data-action="show-notifications" aria-label="Notifications">♧<span class="bell-badge hidden" id="bell-badge"></span></button><button class="avatar small" data-page="settings" aria-label="Account settings">M</button></div></header>
 
       <section class="page" id="page-home">
         <div class="page-heading"><div><p class="eyebrow" data-today-label></p><h1>Good morning, <span data-display-name>there</span></h1><p class="subheading">A small step today makes exam day easier.</p></div><button class="button primary" data-page="focus">Start your focus <span>↗</span></button></div>
@@ -117,8 +118,10 @@
   <dialog id="history-dialog" class="app-dialog"><div class="dialog-heading"><div><p class="eyebrow">Your study rhythm</p><h2>Session history</h2></div><button type="button" class="dialog-close" data-action="close-history">×</button></div><div id="history-content"></div></dialog>
   <dialog id="timer-settings-dialog" class="app-dialog"><form method="dialog" id="timer-settings-form"><div class="dialog-heading"><div><p class="eyebrow">Make focus fit your day</p><h2>Timer settings</h2></div><button type="button" class="dialog-close" data-action="close-timer-settings">×</button></div><div class="form-grid"><label>Focus minutes<input id="timer-focus-minutes" type="number" min="1" max="180" required></label><label>Short break minutes<input id="timer-short-minutes" type="number" min="1" max="60" required></label><label>Long break minutes<input id="timer-long-minutes" type="number" min="1" max="60" required></label><label>Cycles before long break<input id="timer-cycles" type="number" min="1" max="12" required></label></div><label class="full-width inline-check"><input id="auto-start-select" type="checkbox"> Auto-start the next session</label><p id="timer-settings-error" class="form-error"></p><div class="dialog-actions"><button type="button" class="outlined-button" data-action="close-timer-settings">Cancel</button><button class="button primary" type="submit">Save settings</button></div></form></dialog>
 
+  <dialog id="confirm-delete-dialog" class="app-dialog"><div class="dialog-heading"><div><p class="eyebrow">This cannot be undone</p><h2 id="confirm-delete-title">Delete?</h2></div><button type="button" class="dialog-close" data-action="close-confirm-delete">×</button></div><p class="subheading" id="confirm-delete-message"></p><div class="dialog-actions"><button type="button" class="outlined-button" data-action="close-confirm-delete">Cancel</button><button type="button" class="outlined-button danger-button" data-action="confirm-delete">Delete</button></div></dialog>
+
   <div id="tutorial" class="tutorial hidden" role="dialog" aria-modal="true" aria-labelledby="tutorial-title"><div class="tutorial-card card"><span id="tutorial-step" class="soft-badge">Step 1 of 6</span><h2 id="tutorial-title">Welcome to Focusly</h2><p id="tutorial-copy"></p><div class="tutorial-actions"><button id="tutorial-skip" class="outlined-button" type="button">Skip tutorial</button><button id="tutorial-next" class="button primary" type="button">Next</button></div></div></div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>
