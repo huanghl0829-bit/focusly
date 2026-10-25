@@ -185,3 +185,25 @@ body.celebrate .timer-card{animation:celebrate-pop 1.5s ease}
 :root[data-theme="dark"] .access-illustration path{stroke:rgba(148,163,184,.55)}
 :root[data-theme="dark"] .access-illustration .illustration-cloud{fill:rgba(148,163,184,.12);stroke:rgba(148,163,184,.35)}
 :root[data-theme="dark"] .access-illustration .illustration-book{fill:rgba(var(--pal-b),.16);stroke:rgba(148,163,184,.45)}
+
+/* ===== Round 8: due hero, honest charts, sidebar icons, due badges ===== */
+.due-hero{min-height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:5px;padding:28px 24px}
+.due-hero-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:rgba(var(--pal-a),.14);color:rgb(var(--pal-a));font-size:17px;margin-bottom:6px}
+.due-hero strong{font-size:36px;letter-spacing:-1px;color:var(--ink);line-height:1}
+.due-hero.is-caught-up strong{font-size:22px}
+.due-hero p{margin:2px 0 14px;color:var(--muted);font-size:12px;max-width:320px}
+.due-breakdown{border-top:1px solid var(--line);padding:10px 6px 14px;display:flex;flex-direction:column}
+.due-row{display:flex;align-items:center;gap:10px;width:100%;padding:11px 6px;background:transparent;border:0;border-bottom:1px solid var(--line);text-align:left;cursor:pointer;color:var(--ink);font:inherit}
+.due-row:last-child{border-bottom:0}
+.due-row:hover{background:rgba(148,163,184,.08)}
+.due-row>div{display:flex;flex-direction:column;gap:3px;flex:1}
+.due-row strong{font-size:11px}
+.due-row>div>span{font-size:10px;color:var(--muted)}
+.due-row>b{font-size:10px;color:var(--muted);font-weight:600}
+.due-row>b.has-due{color:rgb(var(--pal-a))}
+.due-row .arrow{color:var(--muted);font-size:14px}
+.deck-row .due-count{color:rgb(var(--pal-a));font-weight:700}
+.chart-col span.flat{background:rgba(148,163,184,.16)}
+:root[data-theme="light"] .chart-col span.flat{background:#e7edeb}
+.nav-icon{display:grid;place-items:center;width:18px}
+.nav-icon svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
