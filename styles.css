@@ -16,7 +16,7 @@
 
 
 /* ===== Website: dark glassmorphism theme, mode accents, timer ring, tasks, ambient ===== */
-:root{--accent-focus:#f87171;--accent-short:#38bdf8;--accent-long:#818cf8;--accent:#35658a}
+:root{--accent-focus:#f87171;--accent-short:#38bdf8;--accent-long:#818cf8;--accent:var(--accent-focus);--pal-a:248,113,113;--pal-b:56,189,248;--pal-ink-a:#fca5a5;--pal-ink-b:#7dd3fc}
 :root[data-mode="focus"]{--accent:var(--accent-focus)}
 :root[data-mode="short"]{--accent:var(--accent-short)}
 :root[data-mode="long"]{--accent:var(--accent-long)}
@@ -24,7 +24,7 @@
 :root[data-theme="dark"]{
   --bg:#0b0f19;--card:rgba(23,32,48,.62);--sidebar:rgba(11,15,25,.78);
   --ink:#e2e8f0;--muted:#94a3b8;--line:rgba(148,163,184,.16);
-  --blue:#f87171;--blue-soft:rgba(248,113,113,.14);
+  --blue:rgb(var(--pal-a));--blue-soft:rgba(var(--pal-a),.14);
   --shadow:0 8px 30px rgba(0,0,0,.4)
 }
 :root[data-theme="dark"] .sidebar,
@@ -36,10 +36,10 @@
 :root[data-theme="dark"] .access-card{background:var(--card)}
 :root[data-theme="dark"] .nav-item{color:#94a3b8}
 :root[data-theme="dark"] .nav-item:hover{background:rgba(148,163,184,.12);color:#e2e8f0}
-:root[data-theme="dark"] .nav-item.active{background:rgba(248,113,113,.16);color:#fca5a5}
+:root[data-theme="dark"] .nav-item.active{background:rgba(var(--pal-a),.16);color:var(--pal-ink-a)}
 :root[data-theme="dark"] .breadcrumb{color:#64748b}
 :root[data-theme="dark"] .breadcrumb strong{color:#cbd5e1}
-:root[data-theme="dark"] .status-pill,:root[data-theme="dark"] .soft-badge{background:rgba(56,189,248,.14);color:#7dd3fc}
+:root[data-theme="dark"] .status-pill,:root[data-theme="dark"] .soft-badge{background:rgba(var(--pal-b),.14);color:var(--pal-ink-b)}
 :root[data-theme="dark"] .eyebrow{color:#64748b}
 :root[data-theme="dark"] .subheading{color:#94a3b8}
 :root[data-theme="dark"] .button.primary{background:var(--accent);color:#0b0f19;box-shadow:0 3px 14px rgba(0,0,0,.35)}
@@ -47,10 +47,10 @@
 :root[data-theme="dark"] .button.subtle{background:rgba(148,163,184,.14);color:#cbd5e1}
 :root[data-theme="dark"] .outlined-button{background:rgba(148,163,184,.08);border-color:rgba(148,163,184,.24);color:#cbd5e1}
 :root[data-theme="dark"] .text-button,:root[data-theme="dark"] .small-link{color:var(--accent)}
-:root[data-theme="dark"] .study-hero{background:rgba(248,113,113,.16);border-color:rgba(248,113,113,.3)}
+:root[data-theme="dark"] .study-hero{background:rgba(var(--pal-a),.16);border-color:rgba(var(--pal-a),.3)}
 :root[data-theme="dark"] .study-hero .text-button,:root[data-theme="dark"] .hero-copy strong{color:#fff}
-:root[data-theme="dark"] .blue-tint{background:rgba(56,189,248,.1);border-color:rgba(56,189,248,.2)}
-:root[data-theme="dark"] .focus-quote,:root[data-theme="dark"] .encouragement{background:rgba(248,113,113,.16);border-color:rgba(248,113,113,.3)}
+:root[data-theme="dark"] .blue-tint{background:rgba(var(--pal-b),.1);border-color:rgba(var(--pal-b),.2)}
+:root[data-theme="dark"] .focus-quote,:root[data-theme="dark"] .encouragement{background:rgba(var(--pal-a),.16);border-color:rgba(var(--pal-a),.3)}
 :root[data-theme="dark"] .timer-tabs{background:rgba(148,163,184,.1)}
 :root[data-theme="dark"] .timer-tabs button{color:#94a3b8}
 :root[data-theme="dark"] .metric-label{color:#64748b}
@@ -103,3 +103,45 @@
 /* Timer settings auto-start row */
 .form-grid .inline-check{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:10px;font-weight:600;grid-column:1/-1;margin-top:4px}
 .inline-check input{accent-color:var(--accent)}
+
+/* AI generation settings */
+.ai-fields{display:grid;gap:9px;min-width:min(340px,100%)}
+.ai-fields label{display:grid;gap:5px;font-size:10px;font-weight:600;color:var(--muted)}
+.ai-fields input{width:100%;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);padding:9px 10px;font:inherit;font-size:11px}
+.ai-fields input:focus{outline:3px solid #a6c8e0;outline-offset:1px}
+
+/* ===== Motion: aurora background, page transitions, card lift, celebration ===== */
+/* The page color moves to <html> so the fixed aurora blobs (z-index -1) stay visible. */
+html{background:var(--bg)}
+body{background:transparent}
+body::before,body::after{content:"";position:fixed;z-index:-1;border-radius:50%;filter:blur(90px);pointer-events:none;opacity:.38;will-change:transform}
+body::before{width:58vmax;height:58vmax;top:-18vmax;left:-14vmax;background:radial-gradient(circle at 35% 35%,rgba(var(--pal-a),.5),transparent 62%);animation:aurora-a 44s ease-in-out infinite alternate}
+body::after{width:54vmax;height:54vmax;bottom:-18vmax;right:-14vmax;background:radial-gradient(circle at 60% 60%,rgba(var(--pal-b),.42),transparent 62%);animation:aurora-b 56s ease-in-out -8s infinite alternate}
+:root[data-theme="light"] body::before,:root[data-theme="light"] body::after{opacity:.22}
+@keyframes aurora-a{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(9vmax,6vmax,0) scale(1.18)}}
+@keyframes aurora-b{from{transform:translate3d(0,0,0) scale(1.08)}to{transform:translate3d(-7vmax,-5vmax,0) scale(.92)}}
+.page{animation:page-in .32s cubic-bezier(.22,.68,.34,1) both}
+@keyframes page-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media(hover:hover){.card{transition:transform .22s ease,box-shadow .22s ease}.card:hover{transform:translateY(-2px);box-shadow:0 16px 44px rgba(0,0,0,.26)}:root[data-theme="light"] .card:hover{box-shadow:0 16px 40px rgba(42,63,63,.12)}}
+.timer-ring.is-running .ring-fg{animation:ring-breathe 2.6s ease-in-out infinite}
+@keyframes ring-breathe{0%,100%{opacity:.78;filter:none}50%{opacity:1;filter:drop-shadow(0 0 9px var(--accent))}}
+body.celebrate .timer-card{animation:celebrate-pop 1.5s ease}
+@keyframes celebrate-pop{0%{box-shadow:0 0 0 0 rgba(0,0,0,0)}22%{box-shadow:0 0 70px 14px var(--blue-soft)}100%{box-shadow:var(--shadow)}}
+[data-motion="reduced"] *,[data-motion="reduced"] *::before,[data-motion="reduced"] *::after{animation:none!important;transition:none!important}
+:root[data-theme="dark"] .access-view{background:radial-gradient(circle at 50% 0,rgba(var(--pal-b),.1) 0,transparent 45%)}
+
+/* ===== Color palettes (accent + aurora + tints move together) ===== */
+:root[data-palette="ocean"]{--accent-focus:#38bdf8;--accent-short:#2dd4bf;--accent-long:#818cf8;--pal-a:56,189,248;--pal-b:45,212,191;--pal-ink-a:#7dd3fc;--pal-ink-b:#5eead4}
+:root[data-palette="forest"]{--accent-focus:#4ade80;--accent-short:#a3e635;--accent-long:#2dd4bf;--pal-a:74,222,128;--pal-b:163,230,53;--pal-ink-a:#86efac;--pal-ink-b:#d9f99d}
+:root[data-palette="violet"]{--accent-focus:#a78bfa;--accent-short:#f472b6;--accent-long:#818cf8;--pal-a:167,139,250;--pal-b:244,114,182;--pal-ink-a:#c4b5fd;--pal-ink-b:#f9a8d4}
+:root[data-palette="amber"]{--accent-focus:#fbbf24;--accent-short:#fb923c;--accent-long:#f87171;--pal-a:251,191,36;--pal-b:251,146,60;--pal-ink-a:#fcd34d;--pal-ink-b:#fdba74}
+
+/* Each palette also recolors the whole world: background, glass cards, sidebar, borders. */
+:root[data-theme="dark"][data-palette="ocean"]{--bg:#0a1220;--card:rgba(17,32,52,.62);--sidebar:rgba(8,15,28,.8);--line:rgba(147,197,253,.14)}
+:root[data-theme="dark"][data-palette="forest"]{--bg:#0a1410;--card:rgba(19,36,28,.6);--sidebar:rgba(7,17,13,.8);--line:rgba(134,239,172,.13)}
+:root[data-theme="dark"][data-palette="violet"]{--bg:#0f0b1e;--card:rgba(30,24,52,.62);--sidebar:rgba(15,10,28,.8);--line:rgba(196,181,253,.14)}
+:root[data-theme="dark"][data-palette="amber"]{--bg:#161007;--card:rgba(42,33,19,.6);--sidebar:rgba(20,15,8,.8);--line:rgba(253,230,138,.13)}
+:root[data-theme="light"][data-palette="ocean"]{--bg:#f2f7fb;--sidebar:#e9f1f8}
+:root[data-theme="light"][data-palette="forest"]{--bg:#f3f8f4;--sidebar:#e9f2eb}
+:root[data-theme="light"][data-palette="violet"]{--bg:#f7f5fc;--sidebar:#efecf7}
+:root[data-theme="light"][data-palette="amber"]{--bg:#faf6ec;--sidebar:#f4eddd}
