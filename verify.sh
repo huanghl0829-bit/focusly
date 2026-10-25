@@ -110,6 +110,16 @@ check('parseAiCards reads plain array', parseAiCards('[{"question":"Q2","answer"
 check('parseAiCards rejects junk', parseAiCards('no json here').length, 0);
 check('sanitizeAiHtml removes script content', sanitizeAiHtml('<p>a</p><script>alert(1)</script>'), '<p>a</p>');
 check('sanitizeAiHtml removes style content', sanitizeAiHtml('<style>.x{}</style><p>b</p>'), '<p>b</p>');
+var srsDeck = normalizeDecks([{ id:'d', title:'T', cards:[
+  { id:'c1', question:'a', answer:'b' },
+  { id:'c2', question:'c', answer:'d', review:{ dueAt:new Date(Date.now() - 86400000).toISOString(), intervalDays:2, easeFactor:2.5, state:'review', reviewCount:1 } },
+  { id:'c3', question:'e', answer:'f', review:{ dueAt:new Date(Date.now() + 9 * 86400000).toISOString(), intervalDays:9, easeFactor:2.5, state:'review', reviewCount:1 } }] }])[0];
+check('dueCardsFor counts new + overdue only', dueCardsFor(srsDeck).length, 2);
+check('dueCardsFor orders overdue before new', dueCardsFor(srsDeck)[0].id, 'c2');
+check('previewInterval again', previewInterval(srsDeck.cards[0], 'again'), '10m');
+check('previewInterval good for new card', previewInterval(srsDeck.cards[0], 'good'), '1d');
+check('previewInterval easy for new card', previewInterval(srsDeck.cards[0], 'easy'), '4d');
+check('previewInterval good grows interval', previewInterval(srsDeck.cards[1], 'good'), '5d');
 if (failures.length) throw new Error('FAILED — ' + failures.join(' | '));
 return 'VERIFY OK';
 EOF
